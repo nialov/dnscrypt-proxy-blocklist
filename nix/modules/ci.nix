@@ -45,7 +45,6 @@
         };
         ".github/workflows/update-blocklist.yaml" = {
           on = {
-            push = { };
             workflow_dispatch = { };
             schedule = [
               {
