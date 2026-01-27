@@ -69,12 +69,14 @@
                 run = "nix run .#update-blocklist";
               }
               {
-                name: "Create Pull Request";
-                run: |
+                name = "Create Pull Request";
+                run = ''
                   git push origin HEAD
                   gh pr create --title "chore: update blocklist" --body "Automated update of the blocklist." --base main --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
-                env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                '';
+                env = {
+                  GITHUB_TOKEN = "${secrets.GITHUB_TOKEN}";
+                };
               }
             ];
           };
