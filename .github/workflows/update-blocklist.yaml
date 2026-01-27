@@ -16,7 +16,7 @@ jobs:
     - name: Update blocklist
       run: nix run .#update-blocklist
     - env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       name: Create Pull Request
       run: 'gh pr create --title "chore: update blocklist" --body "Automated update
         of the blocklist." --base main --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"'
@@ -26,3 +26,6 @@ jobs:
   schedule:
   - cron: 0 0 * * *
   workflow_dispatch: {}
+permissions:
+  contents: write
+  pull-requests: write

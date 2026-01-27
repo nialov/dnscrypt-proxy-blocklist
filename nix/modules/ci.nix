@@ -54,6 +54,10 @@
             ];
           };
 
+          permissions = {
+            contents = "write";
+            pull-requests = "write";
+          };
           jobs = {
             "update-blocklist".steps = [
               checkoutStep
@@ -75,7 +79,7 @@
                   gh pr create --title "chore: update blocklist" --body "Automated update of the blocklist." --base main --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
                 '';
                 env = {
-                  GITHUB_TOKEN = "\${{ secrets.GITHUB_TOKEN }}";
+                  GH_TOKEN = "\${{ secrets.GITHUB_TOKEN }}";
                 };
               }
             ];
