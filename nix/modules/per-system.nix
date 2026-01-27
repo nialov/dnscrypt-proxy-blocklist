@@ -62,16 +62,10 @@
             name = "update-blocklist";
             text = ''
               ${pkgs.wget}/bin/wget https://download.dnscrypt.info/blacklists/domains/mybase.txt --output-document blocklists/mybase.txt
-              if [ $(wc -l < blocklists/mybase.txt) -eq 0 ]; then
+              if [ "$(wc -l < blocklists/mybase.txt)" -eq 0 ]; then
                   echo "Error: Blocklist is empty."
                   exit 1
               fi
-              #        > if [ $(wc -l < blocklists/mybase.txt) -eq 0 ]; then AI!
-       # >      ^-- SC2046 (warning): Quote this to prevent word splitting.
-       # >
-       # > For more information:
-       # >   https://www.shellcheck.net/wiki/SC2046 -- Quote this to prevent word splitt...
-
             '';
           };
         };
