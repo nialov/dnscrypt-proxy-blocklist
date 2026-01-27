@@ -59,8 +59,8 @@
               {
                 name = "Set up git";
                 run =''
-                # Add git commands to set up committing in GitHub actions AI!
-
+                git config --global user.name "GitHub Actions"
+                git config --global user.email "actions@github.com"
                 '';
               }
               {
