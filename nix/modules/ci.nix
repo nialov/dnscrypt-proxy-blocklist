@@ -45,7 +45,11 @@
           on = {
             push = { };
             workflow_dispatch = { };
-            # Add timed run of this workflow (this is Github actions config, just with nix) AI!
+            schedule = [
+              {
+                cron = "0 0 * * *";
+              }
+            ];
             # pull_request = { };
           };
 
