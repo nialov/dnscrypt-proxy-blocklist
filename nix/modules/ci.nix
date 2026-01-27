@@ -58,14 +58,15 @@
               installNixStep
               {
                 name = "Set up git";
-                run =''
-                git config --global user.name "GitHub Actions"
-                git config --global user.email "actions@github.com"
+                run = ''
+                # We do not want to push to master. Rather make branch and pull request AI!
+                  git config --global user.name "GitHub Actions"
+                  git config --global user.email "actions@github.com"
                 '';
               }
               {
-                name = "Download latest";
-                run = "wget https://download.dnscrypt.info/blacklists/domains/mybase.txt --output-document blocklists/mybase.txt";
+                name = "Update blocklist";
+                run = "nix run .#update-blocklist";
               }
             ];
           };
