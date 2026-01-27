@@ -50,7 +50,6 @@
                 cron = "0 0 * * *";
               }
             ];
-            # pull_request = { };
           };
 
           jobs = {
@@ -58,8 +57,11 @@
               checkoutStep
               installNixStep
               {
-                name = "Make directory";
-                run = "mkdir -p blocklists/";
+                name = "Set up git";
+                run =''
+                # Add git commands to set up committing in GitHub actions AI!
+
+                '';
               }
               {
                 name = "Download latest";
