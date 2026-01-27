@@ -59,14 +59,22 @@
               {
                 name = "Set up git";
                 run = ''
-                # We do not want to push to master. Rather make branch and pull request AI!
-                  git config --global user.name "GitHub Actions"
-                  git config --global user.email "actions@github.com"
+                git config --global user.name "GitHub Actions"
+                git config --global user.email "actions@github.com"
+                git checkout -b "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
                 '';
               }
               {
                 name = "Update blocklist";
                 run = "nix run .#update-blocklist";
+              }
+              {
+                name: "Create Pull Request";
+                run: |
+                  git push origin HEAD
+                  gh pr create --title "chore: update blocklist" --body "Automated update of the blocklist." --base main --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
+                env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               }
             ];
           };
