@@ -76,7 +76,7 @@
               {
                 name = "Create Pull Request";
                 run = ''
-                  gh pr create --title "chore: update blocklist" --body "Automated update of the blocklist." --base main --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
+                  gh pr create --title "chore: update blocklist" --body "Automated update of the blocklist." --base master --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
                 '';
                 env = {
                   GH_TOKEN = "\${{ secrets.GITHUB_TOKEN }}";

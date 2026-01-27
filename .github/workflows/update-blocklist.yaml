@@ -19,7 +19,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       name: Create Pull Request
       run: 'gh pr create --title "chore: update blocklist" --body "Automated update
-        of the blocklist." --base main --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"'
+        of the blocklist." --base master --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"'
     timeout-minutes: 60
 'on':
   push: {}

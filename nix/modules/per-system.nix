@@ -67,9 +67,10 @@
               fi
               mkdir -p blocklists/
               ${pkgs.wget}/bin/wget https://download.dnscrypt.info/blacklists/domains/mybase.txt --output-document blocklists/mybase.txt
-              if [ "$(wc -l < blocklists/mybase.txt)" -eq 0 ]; then
-                  echo "Error: Blocklist is empty."
-                  exit 1
+              # Check if the file actually changed
+              if git diff --quiet blocklists/mybase.txt; then
+                  echo "No changes detected in the blocklist. Exiting."
+                  exit 0
               fi
               git add blocklists/mybase.txt
               git commit -m "chore: update blocklist"
