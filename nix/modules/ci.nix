@@ -1,4 +1,3 @@
-{ self, lib, ... }:
 {
 
   flake.actions-nix = {
@@ -16,7 +15,6 @@
           uses = "actions/checkout@v5";
         };
         installNixStep = {
-          # uses = "DeterminateSystems/nix-installer-action@v9";
           uses = "cachix/install-nix-action@v31";
         };
 
@@ -57,11 +55,10 @@
               checkoutStep
               installNixStep
               {
-                name = "Set up git";
+                name = "Set up git and branch";
                 run = ''
-                git config --global user.name "GitHub Actions"
-                git config --global user.email "actions@github.com"
-                git checkout -b "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
+                  git config --global user.name "GitHub Actions"
+                  git config --global user.email "actions@github.com"
                 '';
               }
               {
@@ -71,11 +68,10 @@
               {
                 name = "Create Pull Request";
                 run = ''
-                  git push origin HEAD
                   gh pr create --title "chore: update blocklist" --body "Automated update of the blocklist." --base main --head "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
                 '';
                 env = {
-                  GITHUB_TOKEN = "${secrets.GITHUB_TOKEN}";
+                  GITHUB_TOKEN = "\${{ secrets.GITHUB_TOKEN }}";
                 };
               }
             ];

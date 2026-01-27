@@ -61,6 +61,7 @@
           update-blocklist = pkgs.writeShellApplication {
             name = "update-blocklist";
             text = ''
+              git checkout -b "update-blocklist-$(date +%Y-%m-%d-%H-%M-%S)"
               if ! git diff --quiet HEAD --; then
                   echo "Error: Uncommitted changes detected. Please commit or stash them before running this script."
                   exit 1
@@ -73,6 +74,7 @@
               fi
               git add blocklists/mybase.txt
               git commit -m "chore: update blocklist"
+              git push origin HEAD
             '';
           };
         };
