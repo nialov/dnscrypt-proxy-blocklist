@@ -66,7 +66,8 @@
                   echo "Error: Blocklist is empty."
                   exit 1
               fi
-              # Add and commit file. Make the script work even while in GitHub Actions AI!
+              git add blocklists/mybase.txt
+              git commit -m "Update blocklist"
             '';
           };
         };
