@@ -1,0 +1,32 @@
+{
+  description = "Description for the project";
+
+  inputs = {
+    nix-extra = {
+      url = "github:nialov/nix-extra";
+    };
+    nixpkgs.follows = "nix-extra/nixpkgs";
+    flake-parts.follows = "nix-extra/flake-parts";
+    actions-nix.follows = "nix-extra/actions-nix";
+    import-tree = {
+      url = "github:vic/import-tree";
+    };
+  };
+
+  outputs =
+    inputs:
+    let
+      flakePart = inputs.flake-parts.lib.mkFlake { inherit inputs; } (
+        { inputs, ... }:
+        {
+          systems = [ "x86_64-linux" ];
+          imports = [
+            (inputs.import-tree ./nix/modules)
+          ];
+        }
+      );
+
+    in
+    flakePart;
+
+}
