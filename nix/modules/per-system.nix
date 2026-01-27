@@ -58,16 +58,16 @@
         legacyPackages = pkgs;
 
         packages = {
-            update-blocklist = pkgs.writeShellApplication {
-                name = "update-blocklist";
-                text = ''
-                    ${pkgs.wget}/bin/wget https://download.dnscrypt.info/blacklists/domains/mybase.txt --output-document blocklists/mybase.txt
-                    if [ $(wc -l < blocklists/mybase.txt) -eq 0 ]; then
-                        echo "Error: Blocklist is empty."
-                        exit 1
-                    fi
-                '';
-            };
+          update-blocklist = pkgs.writeShellApplication {
+            name = "update-blocklist";
+            text = ''
+              ${pkgs.wget}/bin/wget https://download.dnscrypt.info/blacklists/domains/mybase.txt --output-document blocklists/mybase.txt
+              if [ $(wc -l < blocklists/mybase.txt) -eq 0 ]; then
+                  echo "Error: Blocklist is empty."
+                  exit 1
+              fi
+            '';
+          };
         };
       };
 
