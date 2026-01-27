@@ -30,7 +30,7 @@
         _module.args.pkgs = mkNixpkgs inputs.nixpkgs;
         devShells = {
           default = pkgs.mkShell {
-            buildInputs = lib.attrValues { inherit (pkgs) python-env; };
+            buildInputs = lib.attrValues { inherit (pkgs) nixfmt-rfc-style; };
             shellHook = config.pre-commit.installationScript;
           };
 
@@ -66,6 +66,12 @@
                   echo "Error: Blocklist is empty."
                   exit 1
               fi
+              #        > if [ $(wc -l < blocklists/mybase.txt) -eq 0 ]; then AI!
+       # >      ^-- SC2046 (warning): Quote this to prevent word splitting.
+       # >
+       # > For more information:
+       # >   https://www.shellcheck.net/wiki/SC2046 -- Quote this to prevent word splitt...
+
             '';
           };
         };
