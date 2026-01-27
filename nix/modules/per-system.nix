@@ -2,7 +2,9 @@
   { inputs, ... }:
 
   {
+    imports = [ inputs.nix-extra.flakeModules.custom-pre-commit-hooks ];
     perSystem =
+
       {
         config,
         system,

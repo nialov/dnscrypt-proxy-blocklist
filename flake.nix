@@ -21,7 +21,6 @@
         {
           systems = [ "x86_64-linux" ];
           imports = [
-            inputs.nix-extra.flakeModules.custom-pre-commit-hooks
             (inputs.import-tree ./nix/modules)
           ];
         }
