@@ -61,7 +61,10 @@
           update-blocklist = pkgs.writeShellApplication {
             name = "update-blocklist";
             text = ''
-              # Add check that git status is clean (no unstaged/staged changes) AI!
+              if ! git diff --quiet HEAD --; then
+                  echo "Error: Uncommitted changes detected. Please commit or stash them before running this script."
+                  exit 1
+              fi
               mkdir -p blocklists/
               ${pkgs.wget}/bin/wget https://download.dnscrypt.info/blacklists/domains/mybase.txt --output-document blocklists/mybase.txt
               if [ "$(wc -l < blocklists/mybase.txt)" -eq 0 ]; then
