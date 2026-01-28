@@ -1,4 +1,4 @@
-# AI-powered Code Generation and Assistance
+# AI!
 
 ## Credit
 This project acknowledges the contributions and inspiration from [https://github.com/jedisct1](https://github.com/jedisct1).
