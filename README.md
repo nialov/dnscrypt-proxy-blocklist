@@ -9,8 +9,3 @@ By using this repo as a flake input, you can easily integrate the latest DNS blo
 ## How It Works
 
 A GitHub Actions workflow periodically fetches the latest blocklist from the FTP server and commits any updates to this repository. This ensures the blocklist stays current without manual intervention.
-
-## Usage
-
-Add this repository as a flake input:
-
