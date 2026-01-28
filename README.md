@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository is designed to be used as a Nix flake input. It automatically maintains an up-to-date `blocklists/mybase.txt` file by regularly synchronizing it from [jedisct1's](https://github.com/jedisct1) FTP server.
+This repository automatically maintains an up-to-date `blocklists/mybase.txt` file by regularly synchronizing it from [jedisct1's](https://github.com/jedisct1) file server.
 
 By using this repo as a flake input, you can easily integrate the latest DNS blocklist into your NixOS or home-manager configuration for use with `dnscrypt-proxy`.
 
