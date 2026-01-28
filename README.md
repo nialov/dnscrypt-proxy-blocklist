@@ -1,1 +1,2 @@
-# Add very concise description of the repo. Give credit to https://github.com/jedisct1 AI!
+# AI-powered code generation and assistance.
+# Credit to https://github.com/jedisct1 AI!
