@@ -48,7 +48,8 @@
             workflow_dispatch = { };
             schedule = [
               {
-                cron = "0 0 * * 0,1";
+                # Once a month
+                cron = "0 0 1 * *";
               }
             ];
           };
