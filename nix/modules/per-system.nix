@@ -78,6 +78,8 @@
             '';
           };
         };
+
+        checks = config.packages;
       };
 
   }
